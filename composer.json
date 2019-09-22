@@ -1,0 +1,19 @@
+{
+  "name": "igor-popravka/tstech-bank",
+  "version": "1.0.0",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Igor Popravka",
+      "email": "ipopravka@hotmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  }
+}
