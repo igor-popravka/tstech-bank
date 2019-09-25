@@ -42,7 +42,7 @@ class Application {
         if (method_exists($controller, $action)) {
             call_user_func_array([$controller, $action], $params);
         } else {
-            call_user_func([$controller, 'default']);
+            call_user_func([$controller, Controller::DEFAULT_ACTION]);
         }
     }
 }

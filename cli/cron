@@ -1,0 +1,14 @@
+<?php
+
+define('APP_ROOT', dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
+
+require_once APP_ROOT. "bootstrap.php";
+
+use App\Application;
+use App\Controllers\CronController;
+
+$controller = new CronController();
+$action = $argv[1] ?? "";
+$params = array_slice($argv, 2);
+
+Application::instance()->run($controller, $action, $params);
