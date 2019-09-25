@@ -4,16 +4,19 @@
 namespace App;
 
 
-abstract class Config implements \ArrayAccess {
+use App\Interfaces\IConfig;
+
+abstract class Config implements IConfig {
     private $data;
 
     public function __construct(array $data = []) {
         $this->setData($data);
     }
 
-    public function loadFromFile(string $file) {
+    public function load(string $file) {
         $data = parse_ini_file($file, true);
         $this->setData($data !== false ? $data : []);
+        return $this;
     }
 
     public function offsetExists($offset) {

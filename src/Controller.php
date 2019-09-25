@@ -4,16 +4,34 @@
 namespace App;
 
 
-use App\Interfaces\IORM;
+use App\Interfaces\IConfig;
+use App\Interfaces\IDBManager;
 
 abstract class Controller {
-    const DEFAULT_ACTION = 'default';
+    private $db_manager;
 
-    protected function getORM(): IORM {
-        return Application::instance()->getOrm();
+    private $config;
+
+    public function __construct(IDBManager $db_manager, IConfig $config) {
+        $this->db_manager = $db_manager;
+        $this->config = $config;
     }
 
-    public function default() {
+    /**
+     * @return IDBManager
+     */
+    protected function getDBManager(): IDBManager {
+        return $this->db_manager;
+    }
+
+    /**
+     * @return IConfig|AppConfig
+     */
+    protected function getConfig(): IConfig {
+        return $this->config;
+    }
+
+    public function __action() {
         echo "<h1>hello Wold!</h1>";
     }
 }

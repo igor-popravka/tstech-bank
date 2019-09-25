@@ -1,5 +1,0 @@
-[MySQL]
-host=<db_host>;
-dbname=<db_name>;
-user=<db_user>;
-password=<db_user_password>;

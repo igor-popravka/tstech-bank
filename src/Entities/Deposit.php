@@ -3,13 +3,10 @@
 
 namespace App\Entities;
 
-
-use App\Interfaces\IEntity;
-use App\ORM\MySQLEntity;
+use App\Interfaces\IDBManager;
+use App\DB\MySQLEntity;
 
 class Deposit extends MySQLEntity {
-    const TABLE_NAME = 'deposit';
-
     /**
      * @var integer
      */
@@ -31,33 +28,12 @@ class Deposit extends MySQLEntity {
      */
     private $open_date;
 
-    public function updateStatement(): string {
-        return "UPDATE deposit SET equity = {$this->getEquity()};";
+    public function update(IDBManager $manager) {
+        $manager->query("UPDATE deposit SET equity=:equity WHERE id_deposit=:id_deposit;", [':equity' => $this->getEquity(), ':id_deposit' => $this->getIdDeposit()]);
     }
 
-    public function insertStatement(): string {
-        return 'SELECT';
-    }
-
-    /**
-     * @return int
-     */
-    public function getId(): int {
-        return $this->getIdDeposit();
-    }
-
-    public function getTable(): string {
-        return self::TABLE_NAME;
-    }
-
-    public function toArray(): array {
-        return [
-            'id_deposit' => $this->getIdDeposit(),
-            'client_id' => $this->getIdClient(),
-            'account_number' => $this->getAccountNumber(),
-            'equity' => $this->getEquity(),
-            'ts' => $this->getOpenDate()->format(self::DB_DATE_FORMAT),
-        ];
+    public function insert(IDBManager $manager) {
+        // TODO: Implement insert() method.
     }
 
     /**
@@ -118,6 +94,7 @@ class Deposit extends MySQLEntity {
 
     /**
      * @return \DateTime
+     * @throws \Exception
      */
     public function getOpenDate(): \DateTime {
         return $this->open_date ?? new \DateTime();

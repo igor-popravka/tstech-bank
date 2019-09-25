@@ -2,13 +2,13 @@
 
 define('APP_ROOT', dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
 
-require_once APP_ROOT. "bootstrap.php";
+require_once APP_ROOT . "bootstrap.php";
 
-use App\Application;
+use App\Core;
 use App\Controllers\CronController;
 
-$controller = new CronController();
+$controller = new CronController(Core::instance()->getDBManager(), Core::instance()->getAppConfig());
 $action = $argv[1] ?? "";
 $params = array_slice($argv, 2);
 
-Application::instance()->run($controller, $action, $params);
+Core::instance()->run($controller, $action, $params);

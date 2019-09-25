@@ -2,7 +2,7 @@
 
 require_once "../bootstrap.php";
 
-use App\Application;
+use App\Core;
 use App\Controllers\HTTPController;
 
 $controller = new HTTPController();
@@ -11,4 +11,4 @@ $params = array_filter($_GET, function ($key){
     return $key != 'a';
 }, ARRAY_FILTER_USE_KEY);
 
-Application::instance()->run($controller, $action, $params);
+Core::instance()->run($controller, $action, $params);

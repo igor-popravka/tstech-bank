@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ORM;
+namespace App\DB;
 
 use App\Config;
 use App\Interfaces\IDBConfig;
@@ -11,18 +11,18 @@ class MySQLConfig extends Config implements IDBConfig {
     }
 
     public function getHost(): string {
-        return $this['host'];
+        return $this['CONNECTION']['host'];
     }
 
     public function getDBName(): string {
-        return $this['dbname'];
+        return $this['CONNECTION']['dbname'];
     }
 
     public function getUser(): string {
-        return $this['user'];
+        return $this['CONNECTION']['user'];
     }
 
     public function getPassword(): string {
-        return $this['password'];
+        return $this['CONNECTION']['password'];
     }
 }
