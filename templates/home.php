@@ -21,8 +21,8 @@
             <tr>
                 <th scope="row"><?= $data['num']; ?></th>
                 <td><?= $month; ?></td>
-                <td><?= $data['loss']; ?> USD</td>
-                <td><?= $data['profit']; ?> USD</td>
+                <td class="text-danger"><?= $data['loss']; ?> USD</td>
+                <td class="text-success"><?= $data['profit']; ?> USD</td>
             </tr>
         <? endforeach; ?>
         </tbody>
@@ -34,7 +34,7 @@
         <thead>
         <tr>
             <th scope="col">Age-old group</th>
-            <th scope="col">Amount</th>
+            <th scope="col">Average</th>
         </tr>
         </thead>
         <tbody>

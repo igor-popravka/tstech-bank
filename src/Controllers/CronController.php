@@ -18,7 +18,7 @@ class CronController extends Controller {
     }
 
     public function calculation() {
-        $current_date = new \DateTime('2019-09-30');
+        $current_date = new \DateTime();
 
         if ($current_date->format('d') == $current_date->format('t')) {
             $statement = 'SELECT * FROM deposit WHERE open_date=LAST_DAY(open_date);';
