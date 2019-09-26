@@ -40,6 +40,6 @@ class MySQLManager implements IDBManager {
             }, $sto->fetchAll());
         }
 
-        return $sto->fetchAll();
+        return $sto->fetchAll(\PDO::FETCH_ASSOC);
     }
 }

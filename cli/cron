@@ -7,7 +7,7 @@ require_once APP_ROOT . "bootstrap.php";
 use App\Core;
 use App\Controllers\CronController;
 
-$controller = new CronController(Core::instance()->getDBManager(), Core::instance()->getAppConfig());
+$controller = new CronController(Core::instance()->getDBManager());
 $action = $argv[1] ?? "";
 $params = array_slice($argv, 2);
 

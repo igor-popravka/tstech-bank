@@ -4,17 +4,27 @@
 namespace App;
 
 
-use App\Interfaces\IConfig;
 use App\Interfaces\IDBManager;
+use App\Interfaces\IViewer;
 
 abstract class Controller {
+    /**
+     * @var IDBManager
+     */
     private $db_manager;
 
-    private $config;
+    /**
+     * @var IViewer
+     */
+    private $viewer;
 
-    public function __construct(IDBManager $db_manager, IConfig $config) {
+    abstract public function __default();
+
+    abstract public function __home();
+
+    public function __construct(IDBManager $db_manager, IViewer $viewer = null) {
         $this->db_manager = $db_manager;
-        $this->config = $config;
+        $this->viewer = $viewer;
     }
 
     /**
@@ -25,13 +35,9 @@ abstract class Controller {
     }
 
     /**
-     * @return IConfig|AppConfig
+     * @return IViewer|null
      */
-    protected function getConfig(): IConfig {
-        return $this->config;
-    }
-
-    public function __action() {
-        echo "<h1>hello Wold!</h1>";
+    protected function getViewer():? IViewer {
+        return $this->viewer;
     }
 }

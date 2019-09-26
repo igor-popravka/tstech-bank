@@ -15,9 +15,17 @@ abstract class MySQLEntity implements IDBEntity {
     }
 
     public function fromArray(array $row): MySQLEntity {
+        $rfl_entity = new \ReflectionObject($this);
+
         foreach ($this->generateSetters($row) as $setter => $value) {
-            if (method_exists($this, $setter)) {
-                call_user_func([$this, $setter], $value);
+            if ($rfl_entity->hasMethod($setter)) {
+                $rfl_method = $rfl_entity->getMethod($setter);
+
+                if (!$rfl_method->isPublic()) {
+                    $rfl_method->setAccessible(true);
+                }
+
+                $rfl_method->invoke($this, $value);
             }
         }
 

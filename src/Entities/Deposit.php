@@ -24,6 +24,10 @@ class Deposit extends MySQLEntity {
      */
     private $equity;
     /**
+     * @var float
+     */
+    private $rate;
+    /**
      * @var \DateTime
      */
     private $open_date;
@@ -46,7 +50,7 @@ class Deposit extends MySQLEntity {
     /**
      * @param int $id_deposit
      */
-    public function setIdDeposit(int $id_deposit) {
+    private function setIdDeposit(int $id_deposit) {
         $this->id_deposit = $id_deposit;
     }
 
@@ -90,6 +94,20 @@ class Deposit extends MySQLEntity {
      */
     public function setEquity(float $equity) {
         $this->equity = $equity;
+    }
+
+    /**
+     * @return float
+     */
+    public function getRate(): float {
+        return $this->rate;
+    }
+
+    /**
+     * @param float $rate
+     */
+    public function setRate(float $rate) {
+        $this->rate = $rate;
     }
 
     /**
